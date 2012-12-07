@@ -1,6 +1,8 @@
 (ns manager.core
   (:import [java.io File])
-  (:use [seesaw.core]))
+  (:require [clojure.java.io :as io])
+  (:use [seesaw.core]
+        [clojure.string :only [join split]]))
 
 (def version "0.1")
 
@@ -24,9 +26,23 @@
                                [:text "Exit"
                                 :listen [:action (fn [e] (dispose! f))]]]))
 
+(defn path [& dirs]
+  (join (File/separator) dirs))
+
+
+(defn write-default-config [config-file]
+  (let [default-contents (str "project-dir=" (path (System/getProperty "user.home") "clj-workspace"))
+        output (io/writer config-file)]
+    (.write output default-contents)
+    (.close output)))
+
+(defn parse-config-file [config-file]
+  "")
 
 (defn setup-config-file [config-file]
-  (. config-file createNewFile))
+  (when (. config-file createNewFile)
+    (write-default-config config-file))
+  (parse-config-file config-file))
 
 (defn setup-config-dir
   "Attempts to make the configuration directory.
