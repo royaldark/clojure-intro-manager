@@ -1,4 +1,5 @@
 (ns manager.core
+  (:gen-class)
   (:import [java.io File])
   (:require [clojure.java.io :as io])
   (:use [seesaw.core]
