@@ -8,7 +8,6 @@
   (join (File/separator) dirs))
 
 (defn mkdir [dir]
-  (println (type dir))
   (.mkdir (File. dir)))
 
 (defn rm [f]
