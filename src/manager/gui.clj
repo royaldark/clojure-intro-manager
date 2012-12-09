@@ -27,6 +27,7 @@
                                [:text "Import Project"]
                                [:text "Export Project"]
                                [:text "Exit"
+                                :mnemonic \x
                                 :listen [:action (fn [e] (dispose! f))]]]))
 
 (defn ask [txt deftxt callback]
