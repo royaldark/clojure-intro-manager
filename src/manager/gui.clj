@@ -1,4 +1,5 @@
 (ns manager.gui
+  (:require [manager.file :as file])
   (:use [seesaw.core]))
 
 ; Always use the native look and feel.
@@ -43,7 +44,7 @@
       (-> dlg pack! show!))))
 
 
-(defn show-main-window []
+(defn show-main-window [projects]
   (invoke-later
     (def panel (grid-panel :rows (+ (count buttons) 1) :columns 1
                            :hgap 5 :vgap 5 :border 5

@@ -19,3 +19,8 @@
   (let [output (io/writer file)]
     (.write output contents)
     (.close output)))
+
+(defn get-projects [proj-dir]
+  (let [files (.listFiles (File. proj-dir))
+        dirs (filter #(.isDirectory %) files)]
+    dirs))
